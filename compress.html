@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compress PDF & Image Online</title>
+<meta name="description" content="Compress PDF and images online to reduce file size. Free and fast.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<div class="container">
+<img src="assets/logo.png" alt="Logo" class="logo">
+<nav>
+<a href="index.html">Home</a>
+<a href="merge.html">Merge</a>
+<a href="split.html">Split</a>
+<a href="compress.html">Compress</a>
+<a href="convert.html">Convert</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="tool-section">
+<h2>Compress PDF / Images</h2>
+<input type="file" id="compressFiles" multiple accept=".pdf,image/*">
+<button id="compressBtn">Compress</button>
+<div id="compressOutput"></div>
+</section>
+</main>
+
+<script>
+document.getElementById('compressBtn').addEventListener('click',async()=>{
+  const files=[...document.getElementById('compressFiles').files];
+  const output=document.getElementById('compressOutput');
+  if(!files.length){alert('Select files');return;}
+  output.innerHTML='Processing...';
+  const zip=new JSZip();
+  for(let f of files){
+    if(f.type.startsWith('image/')){
+      const img=new Image();
+      const reader=new FileReader();
+      reader.onload=e=>img.src=e.target.result;
+      reader.readAsDataURL(f);
+      await new Promise(r=>img.onload=r);
+      const canvas=document.createElement('canvas');
+      canvas.width=img.width; canvas.height=img.height;
+      const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0);
+      const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg',0.6));
+      zip.file(f.name,blob);
+    }else zip.file(f.name,f);
+  }
+  const blob=await zip.generateAsync({type:'blob'});
+  const url=URL.createObjectURL(blob);
+  output.innerHTML=`<a href="${url}" download="compressed.zip">Download Compressed Files</a>`;
+});
+</script>
+</body>
+</html>
