@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compress PDF & Image Online</title>
-<meta name="description" content="Compress PDF and images online to reduce file size. Free and fast.">
+<title>Compress PDF & Images Online</title>
+<meta name="description" content="Compress PDFs and images online to reduce file size. Free, fast, and secure.">
+<meta name="keywords" content="compress pdf online, compress images, reduce file size, free compress tool">
 <link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
 </head>
 <body>
 <header>
@@ -21,40 +22,78 @@
 </div>
 </header>
 
-<main>
+<main class="container">
+<section class="hero">
+<h1>Compress PDF & Images</h1>
+<p>Reduce the file size of PDFs and images (JPG/PNG) quickly online without losing quality.</p>
+</section>
+
+<section class="instructions">
+<h2>How This Compression Tool Works:</h2>
+<ol>
+<li>Choose files from your device (PDF, JPEG, PNG).</li>
+<li>Click “Compress Files”.</li>
+<li>Download compressed files in a ZIP folder.</li>
+</ol>
+</section>
+
+<section class="ad-box">Google Ad Placeholder</section>
+
 <section class="tool-section">
-<h2>Compress PDF / Images</h2>
+<h2>Compress Files</h2>
 <input type="file" id="compressFiles" multiple accept=".pdf,image/*">
-<button id="compressBtn">Compress</button>
+<button id="compressBtn">Compress Files</button>
 <div id="compressOutput"></div>
+</section>
+
+<section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+<h3>FAQ</h3>
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h4 itemprop="name">What types of files can be compressed?</h4>
+<div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+<p itemprop="text">You can compress PDFs, JPEG, and PNG files using this tool.</p>
+</div>
+</div>
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+<h4 itemprop="name">Is this compressor free?</h4>
+<div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+<p itemprop="text">Yes, this tool is completely free online.</p>
+</div>
+</div>
 </section>
 </main>
 
+<footer class="footer-text">
+&copy; 2026 Talha Ramzan — Compress PDF & Images Online.
+</footer>
+
 <script>
-document.getElementById('compressBtn').addEventListener('click',async()=>{
-  const files=[...document.getElementById('compressFiles').files];
-  const output=document.getElementById('compressOutput');
-  if(!files.length){alert('Select files');return;}
-  output.innerHTML='Processing...';
-  const zip=new JSZip();
-  for(let f of files){
-    if(f.type.startsWith('image/')){
-      const img=new Image();
-      const reader=new FileReader();
-      reader.onload=e=>img.src=e.target.result;
+document.getElementById('compressBtn').addEventListener('click', async () => {
+  const files = [...document.getElementById('compressFiles').files];
+  const output = document.getElementById('compressOutput');
+  if (!files.length) { alert('Select files to compress'); return; }
+  output.innerHTML = 'Compressing...';
+
+  const zip = new JSZip();
+  for (let f of files) {
+    if (f.type.startsWith('image/')) {
+      let img = new Image();
+      let reader = new FileReader();
+      reader.onload = e => img.src = e.target.result;
       reader.readAsDataURL(f);
-      await new Promise(r=>img.onload=r);
-      const canvas=document.createElement('canvas');
-      canvas.width=img.width; canvas.height=img.height;
-      const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0);
-      const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg',0.6));
-      zip.file(f.name,blob);
-    }else zip.file(f.name,f);
+      await new Promise(r => img.onload = r);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width; canvas.height = img.height;
+      const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0);
+      const blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', 0.6));
+      zip.file(f.name, blob);
+    } else zip.file(f.name, f);
   }
-  const blob=await zip.generateAsync({type:'blob'});
-  const url=URL.createObjectURL(blob);
-  output.innerHTML=`<a href="${url}" download="compressed.zip">Download Compressed Files</a>`;
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(blob);
+  output.innerHTML = `<a href="${url}" download="compressed-files.zip" class="download-btn">Download Compressed Files</a>`;
 });
 </script>
+
 </body>
 </html>
