@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split PDF Online</title>
+<meta name="description" content="Split a PDF into multiple pages online for free.">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.21.0/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+</head>
+<body>
+<header>
+<div class="container">
+<img src="assets/logo.png" alt="Logo" class="logo">
+<nav>
+<a href="index.html">Home</a>
+<a href="merge.html">Merge</a>
+<a href="split.html">Split</a>
+<a href="compress.html">Compress</a>
+<a href="convert.html">Convert</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="tool-section">
+<h2>Split PDF</h2>
+<input type="file" id="splitFile" accept="application/pdf">
+<button id="splitBtn">Split PDF</button>
+<div id="splitOutput"></div>
+</section>
+</main>
+
+<script>
+document.getElementById('splitBtn').addEventListener('click',async()=>{
+  const file=document.getElementById('splitFile').files[0];
+  const output=document.getElementById('splitOutput');
+  if(!file){alert('Select a PDF');return;}
+  output.innerHTML='Processing...';
+  try{
+    const pdf=await PDFLib.PDFDocument.load(await file.arrayBuffer());
+    const zip=new JSZip();
+    for(let i=0;i<pdf.getPageCount();i++){
+      const newPdf=await PDFLib.PDFDocument.create();
+      const [copied]=await newPdf.copyPages(pdf,[i]);
+      newPdf.addPage(copied);
+      const bytes=await newPdf.save();
+      zip.file(`page-${i+1}.pdf`,bytes);
+    }
+    const blob=await zip.generateAsync({type:'blob'});
+    const url=URL.createObjectURL(blob);
+    output.innerHTML=`<a href="${url}" download="split-pages.zip">Download Split PDFs</a>`;
+  }catch(err){output.innerHTML='Error: '+err.message;}
+});
+</script>
+</body>
+</html>
