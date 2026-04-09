@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk PDF & Image Converter — Free Online Tool</title>
+  <meta name="description" content="Merge, split, compress, and convert PDF & images online for free. Professional, fast, and fully secure.">
+  <meta name="keywords" content="PDF Converter, Image Converter, PDF Merge, PDF Compress, Online PDF Tools">
+  <meta name="author" content="Talha Ramzan">
+  <meta property="og:title" content="Bulk PDF & Image Converter">
+  <meta property="og:description" content="Merge, split, compress, and convert PDF & images online. Free, fast, and professional.">
+  <meta property="og:image" content="assets/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <img src="assets/logo.png" alt="Bulk Converter Logo" class="logo">
+      <h1>Bulk PDF & Image Converter</h1>
+      <p>Merge, compress, split, and convert PDFs & images easily online</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="upload-section">
+      <h2>Upload Your Files</h2>
+      <div class="upload-wrapper">
+        <input type="file" id="fileInput" multiple>
+        <select id="action">
+          <option value="merge">Merge PDFs</option>
+          <option value="split">Split PDF</option>
+          <option value="compress">Compress PDF</option>
+          <option value="convert">Image to PDF</option>
+        </select>
+        <button id="processBtn">Process</button>
+      </div>
+      <div id="output"></div>
+    </section>
+
+    <section class="features">
+      <h2>Features</h2>
+      <ul>
+        <li>Merge PDFs in one click</li>
+        <li>Split PDF pages easily</li>
+        <li>Compress PDF & images</li>
+        <li>Convert images to PDF</li>
+        <li>Download all files in ZIP</li>
+        <li>Fast & secure online processing</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Talha Ramzan. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.21.0/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+  <script src="utils.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
