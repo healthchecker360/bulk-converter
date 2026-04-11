@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FileForge — Free Online PDF & Image Tools</title>
+<meta name="description" content="50+ free online PDF and image tools. Merge, split, compress, convert PDFs and images. No signup required. Files deleted after 1 hour.">
+<meta name="keywords" content="free PDF tools, merge PDF, split PDF, compress PDF, convert PDF, PDF to Word, image to PDF, compress images online">
+<meta property="og:title" content="FileForge — Free Online PDF & Image Tools">
+<meta property="og:description" content="50+ free PDF & image tools online. No signup. Works on any device.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://fileforge.tools/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FileForge","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"50+ free online PDF and image tools"}
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo-link">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">File<strong>Forge</strong></span>
+    </a>
+    <nav class="main-nav">
+      <div class="nav-dropdown">
+        <button class="nav-btn">PDF Tools ▾</button>
+        <div class="dropdown-menu">
+          <a href="merge.html">Merge PDF</a>
+          <a href="split.html">Split PDF</a>
+          <a href="compress.html">Compress PDF</a>
+          <a href="pdf-to-word.html">PDF to Word</a>
+          <a href="pdf-to-jpg.html">PDF to JPG</a>
+          <a href="rotate-pdf.html">Rotate PDF</a>
+          <a href="protect-pdf.html">Protect PDF</a>
+          <a href="watermark.html">Add Watermark</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-btn">Image Tools ▾</button>
+        <div class="dropdown-menu">
+          <a href="jpg-to-pdf.html">JPG to PDF</a>
+          <a href="compress-image.html">Compress Image</a>
+          <a href="resize-image.html">Resize Image</a>
+          <a href="convert-image.html">Convert Image</a>
+          <a href="remove-bg.html">Remove Background</a>
+          <a href="crop-image.html">Crop Image</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-btn">Convert ▾</button>
+        <div class="dropdown-menu">
+          <a href="word-to-pdf.html">Word to PDF</a>
+          <a href="excel-to-pdf.html">Excel to PDF</a>
+          <a href="ppt-to-pdf.html">PPT to PDF</a>
+          <a href="html-to-pdf.html">HTML to PDF</a>
+          <a href="pdf-to-excel.html">PDF to Excel</a>
+          <a href="pdf-to-ppt.html">PDF to PPT</a>
+        </div>
+      </div>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <div class="header-actions">
+      <button class="search-btn" onclick="toggleSearch()" aria-label="Search tools">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="dark-btn" onclick="toggleDark()" aria-label="Toggle dark mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">☰</button>
+  </div>
+  <div class="search-bar" id="searchBar">
+    <div class="container">
+      <input type="text" id="toolSearch" placeholder="Search tools… e.g. compress PDF, merge, JPG to PDF" oninput="filterTools(this.value)" autofocus>
+      <button onclick="toggleSearch()">✕</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">✦ 100% Free · No Signup Required</div>
+    <h1 class="hero-title">Every file tool<br>you'll ever need.</h1>
+    <p class="hero-sub">Merge, split, compress, convert PDFs and images — all in your browser. Files auto-deleted after 1 hour.</p>
+    <div class="hero-search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder='Try "compress PDF" or "merge"...' oninput="filterTools(this.value)" id="heroSearch">
+    </div>
+    <div class="hero-stats">
+      <span>10M+ files processed</span>
+      <span class="dot">·</span>
+      <span>50+ tools</span>
+      <span class="dot">·</span>
+      <span>256-bit SSL</span>
+      <span class="dot">·</span>
+      <span>Files deleted in 1hr</span>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT -->
+<div class="container"><div class="ad-slot ad-leaderboard"><!-- Google AdSense Leaderboard 728x90 --><span>Advertisement</span></div></div>
+
+<!-- TRUST BADGES -->
+<section class="trust-bar">
+  <div class="container trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">🔒</div>
+      <div><strong>No Signup</strong><br><span>Use all tools instantly</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⏱</div>
+      <div><strong>Auto-Deleted</strong><br><span>Files gone after 1 hour</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🛡</div>
+      <div><strong>256-bit SSL</strong><br><span>Bank-grade encryption</span></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⚡</div>
+      <div><strong>Lightning Fast</strong><br><span>Processed in seconds</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS GRID -->
+<main class="container tools-section" id="toolsSection">
+
+  <div class="section-header">
+    <h2>PDF Tools</h2>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid" id="pdfGrid">
+    <a href="merge.html" class="tool-card" data-tags="merge pdf combine join">
+      <div class="tool-icon" style="background:#E8F4FF;color:#1a73e8">⊕</div>
+      <div class="tool-info"><strong>Merge PDF</strong><p>Combine PDFs into one file</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="split.html" class="tool-card" data-tags="split pdf pages separate extract">
+      <div class="tool-icon" style="background:#FFF3E0;color:#f57c00">⊘</div>
+      <div class="tool-info"><strong>Split PDF</strong><p>Extract pages into separate files</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="compress.html" class="tool-card" data-tags="compress pdf reduce size smaller">
+      <div class="tool-icon" style="background:#E8F5E9;color:#388e3c">⇩</div>
+      <div class="tool-info"><strong>Compress PDF</strong><p>Reduce file size, keep quality</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="pdf-to-word.html" class="tool-card" data-tags="pdf to word docx convert">
+      <div class="tool-icon" style="background:#EDE7F6;color:#7b1fa2">W</div>
+      <div class="tool-info"><strong>PDF to Word</strong><p>Convert PDF to editable DOCX</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="pdf-to-jpg.html" class="tool-card" data-tags="pdf to jpg image convert picture">
+      <div class="tool-icon" style="background:#FCE4EC;color:#c62828">🖼</div>
+      <div class="tool-info"><strong>PDF to JPG</strong><p>Convert PDF pages to images</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="rotate-pdf.html" class="tool-card" data-tags="rotate pdf pages flip turn">
+      <div class="tool-icon" style="background:#E0F7FA;color:#00838f">↺</div>
+      <div class="tool-info"><strong>Rotate PDF</strong><p>Fix orientation of pages</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="protect-pdf.html" class="tool-card" data-tags="protect pdf password lock secure encrypt">
+      <div class="tool-icon" style="background:#F3E5F5;color:#6a1b9a">🔐</div>
+      <div class="tool-info"><strong>Protect PDF</strong><p>Add a password to your PDF</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="watermark.html" class="tool-card" data-tags="watermark pdf stamp text add">
+      <div class="tool-icon" style="background:#FFF8E1;color:#f9a825">✦</div>
+      <div class="tool-info"><strong>Add Watermark</strong><p>Stamp text on all pages</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="section-header" style="margin-top:48px">
+    <h2>Image Tools</h2>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid" id="imageGrid">
+    <a href="jpg-to-pdf.html" class="tool-card" data-tags="jpg to pdf image convert png">
+      <div class="tool-icon" style="background:#E3F2FD;color:#1565c0">⬡</div>
+      <div class="tool-info"><strong>JPG to PDF</strong><p>Turn images into a PDF</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="compress-image.html" class="tool-card" data-tags="compress image jpg png reduce size photo">
+      <div class="tool-icon" style="background:#E8F5E9;color:#2e7d32">⇩</div>
+      <div class="tool-info"><strong>Compress Image</strong><p>Shrink JPG/PNG/WEBP</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="resize-image.html" class="tool-card" data-tags="resize image dimensions width height scale">
+      <div class="tool-icon" style="background:#FFF3E0;color:#e65100">⤡</div>
+      <div class="tool-info"><strong>Resize Image</strong><p>Change image dimensions</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="convert-image.html" class="tool-card" data-tags="convert image jpg png webp format change">
+      <div class="tool-icon" style="background:#EDE7F6;color:#4527a0">⇄</div>
+      <div class="tool-info"><strong>Convert Image</strong><p>JPG ↔ PNG ↔ WEBP</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="remove-bg.html" class="tool-card" data-tags="remove background image transparent cutout ai">
+      <div class="tool-icon" style="background:#FCE4EC;color:#ad1457">✂</div>
+      <div class="tool-info"><strong>Remove Background</strong><p>AI-powered background removal</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="crop-image.html" class="tool-card" data-tags="crop image trim cut photo">
+      <div class="tool-icon" style="background:#E0F2F1;color:#00695c">⊟</div>
+      <div class="tool-info"><strong>Crop Image</strong><p>Trim and cut your images</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="section-header" style="margin-top:48px">
+    <h2>Convert Documents</h2>
+    <a href="#" class="see-all">See all →</a>
+  </div>
+  <div class="tools-grid" id="convertGrid">
+    <a href="word-to-pdf.html" class="tool-card" data-tags="word to pdf docx convert document">
+      <div class="tool-icon" style="background:#E3F2FD;color:#1565c0">W→</div>
+      <div class="tool-info"><strong>Word to PDF</strong><p>Convert DOCX to PDF</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="excel-to-pdf.html" class="tool-card" data-tags="excel to pdf xlsx spreadsheet convert">
+      <div class="tool-icon" style="background:#E8F5E9;color:#1b5e20">X→</div>
+      <div class="tool-info"><strong>Excel to PDF</strong><p>Convert spreadsheets to PDF</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="ppt-to-pdf.html" class="tool-card" data-tags="powerpoint to pdf pptx slides convert">
+      <div class="tool-icon" style="background:#FFF3E0;color:#bf360c">P→</div>
+      <div class="tool-info"><strong>PPT to PDF</strong><p>Convert presentations to PDF</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="html-to-pdf.html" class="tool-card" data-tags="html to pdf webpage convert web">
+      <div class="tool-icon" style="background:#FCE4EC;color:#880e4f">&lt;/&gt;</div>
+      <div class="tool-info"><strong>HTML to PDF</strong><p>Save webpages as PDF</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="pdf-to-excel.html" class="tool-card" data-tags="pdf to excel xlsx tables data extract">
+      <div class="tool-icon" style="background:#E0F2F1;color:#004d40">→X</div>
+      <div class="tool-info"><strong>PDF to Excel</strong><p>Extract tables to spreadsheet</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="pdf-to-ppt.html" class="tool-card" data-tags="pdf to powerpoint pptx slides convert">
+      <div class="tool-icon" style="background:#F3E5F5;color:#4a148c">→P</div>
+      <div class="tool-info"><strong>PDF to PPT</strong><p>Convert PDF to slides</p></div>
+      <span class="tool-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- AD SLOT MID PAGE -->
+  <div class="ad-slot ad-rectangle" style="margin:48px auto"><!-- AdSense Rectangle 336x280 --><span>Advertisement</span></div>
+
+  <!-- NO RESULTS -->
+  <div id="noResults" style="display:none;text-align:center;padding:60px 20px;">
+    <div style="font-size:48px;margin-bottom:16px">🔍</div>
+    <h3>No tools found</h3>
+    <p style="color:#666">Try searching for "compress", "merge", or "convert"</p>
+  </div>
+
+</main>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="container">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Process files in 3 simple steps — no software to install</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Upload your file</h3>
+        <p>Drag & drop or click to select from your device, Google Drive, or Dropbox.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Choose your tool</h3>
+        <p>Select the operation — merge, compress, convert, and more. Adjust any settings.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Download instantly</h3>
+        <p>Your processed file is ready in seconds. Download it or save to cloud storage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="blog-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Tips & Guides</h2>
+      <a href="blog.html" class="see-all">View all articles →</a>
+    </div>
+    <div class="blog-grid">
+      <a href="blog/compress-pdf.html" class="blog-card">
+        <div class="blog-tag">PDF Tips</div>
+        <h3>How to compress a PDF without losing quality</h3>
+        <p>5-minute guide to reducing PDF size while keeping text and images sharp.</p>
+        <span class="blog-read">5 min read →</span>
+      </a>
+      <a href="blog/merge-pdf-guide.html" class="blog-card">
+        <div class="blog-tag">How-To</div>
+        <h3>Merge PDF files on any device — desktop or mobile</h3>
+        <p>Step-by-step instructions for combining PDFs on Windows, Mac, iPhone and Android.</p>
+        <span class="blog-read">4 min read →</span>
+      </a>
+      <a href="blog/jpg-vs-png.html" class="blog-card">
+        <div class="blog-tag">Image Guide</div>
+        <h3>JPG vs PNG vs WEBP: which format should you use?</h3>
+        <p>A practical comparison of the most common image formats and when to use each.</p>
+        <span class="blog-read">6 min read →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-grid">
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Are all tools completely free? <span>+</span></button>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes — every tool on FileForge is 100% free to use with no signup, no watermarks, and no hidden fees.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Are my files kept private and secure? <span>+</span></button>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Absolutely. Files are processed either entirely in your browser (client-side) or on encrypted servers, and are automatically deleted after 1 hour. We never read or share your files.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Do I need to install any software? <span>+</span></button>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">No. Everything works directly in your web browser — on desktop, tablet, or mobile. No downloads, no extensions required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Is there a file size limit? <span>+</span></button>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Free users can process files up to 100MB. For larger files or batch processing, no account is needed — just use our tools directly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Can I use these tools on my phone? <span>+</span></button>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes! FileForge is fully responsive and works great on iOS and Android browsers. Tap to upload from your camera roll or cloud storage.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-link">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">File<strong>Forge</strong></span>
+      </a>
+      <p>Free online PDF & image tools.<br>No signup. 100% free forever.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>PDF Tools</h4>
+      <a href="merge.html">Merge PDF</a>
+      <a href="split.html">Split PDF</a>
+      <a href="compress.html">Compress PDF</a>
+      <a href="pdf-to-word.html">PDF to Word</a>
+      <a href="pdf-to-jpg.html">PDF to JPG</a>
+      <a href="rotate-pdf.html">Rotate PDF</a>
+    </div>
+    <div class="footer-col">
+      <h4>Image Tools</h4>
+      <a href="jpg-to-pdf.html">JPG to PDF</a>
+      <a href="compress-image.html">Compress Image</a>
+      <a href="resize-image.html">Resize Image</a>
+      <a href="convert-image.html">Convert Image</a>
+      <a href="remove-bg.html">Remove Background</a>
+      <a href="crop-image.html">Crop Image</a>
+    </div>
+    <div class="footer-col">
+      <h4>Convert</h4>
+      <a href="word-to-pdf.html">Word to PDF</a>
+      <a href="excel-to-pdf.html">Excel to PDF</a>
+      <a href="ppt-to-pdf.html">PPT to PDF</a>
+      <a href="html-to-pdf.html">HTML to PDF</a>
+      <a href="pdf-to-excel.html">PDF to Excel</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© 2026 Talha Ramzan — FileForge. All rights reserved.</span>
+      <span>Made with ♥ for free file tools</span>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
