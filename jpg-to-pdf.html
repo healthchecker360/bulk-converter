@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPG to PDF Online Free — Convert Images to PDF | FileForge</title>
+<meta name="description" content="Convert JPG, PNG and WEBP images to PDF online for free. Drag and drop multiple images, set the order, and download your PDF instantly.">
+<meta name="keywords" content="jpg to pdf, image to pdf, png to pdf, convert photo to pdf, jpg to pdf free">
+<link rel="canonical" href="https://fileforge.tools/jpg-to-pdf.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo-link">
+      <span class="logo-icon">⬡</span><span class="logo-text">File<strong>Forge</strong></span>
+    </a>
+    <nav class="main-nav">
+      <div class="nav-dropdown">
+        <button class="nav-btn">PDF Tools ▾</button>
+        <div class="dropdown-menu">
+          <a href="merge.html">Merge PDF</a>
+          <a href="split.html">Split PDF</a>
+          <a href="compress.html">Compress PDF</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-btn">Image Tools ▾</button>
+        <div class="dropdown-menu">
+          <a href="jpg-to-pdf.html">JPG to PDF</a>
+          <a href="compress-image.html">Compress Image</a>
+          <a href="resize-image.html">Resize Image</a>
+          <a href="convert-image.html">Convert Image</a>
+        </div>
+      </div>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <div class="header-actions">
+      <button class="dark-btn" onclick="toggleDark()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+    <button class="hamburger" onclick="toggleNav()">☰</button>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span><span>Image Tools</span><span>›</span><span>JPG to PDF</span>
+    </div>
+    <h1>JPG to PDF Converter</h1>
+    <p>Turn photos and images into a PDF — supports JPG, PNG, WEBP. Multiple images become one document.</p>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot ad-leaderboard"><span>Advertisement</span></div></div>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+
+    <div class="upload-zone" id="uploadZone">
+      <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,image/gif">
+      <span class="upload-icon">🖼</span>
+      <h3>Drop images here</h3>
+      <p>JPG, PNG, WEBP, GIF — multiple images supported</p>
+      <div class="upload-btn-fake">Select Images</div>
+      <p class="upload-formats">Each image becomes one page in the PDF</p>
+    </div>
+
+    <!-- IMAGE PREVIEW GRID -->
+    <div id="imagePreviewGrid" style="display:none;margin-top:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <h3 style="font-size:15px;font-weight:700">Images (drag to reorder)</h3>
+        <span id="imageCount" style="font-size:13px;color:var(--text3)">0 images</span>
+      </div>
+      <div id="previewGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="settings-panel" id="settingsPanel" style="display:none;margin-top:20px">
+      <h3>⚙ PDF Settings</h3>
+      <div class="setting-row">
+        <label>Page size</label>
+        <select id="pageSize" style="flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;">
+          <option value="fit">Fit to image</option>
+          <option value="A4" selected>A4 (210 × 297mm)</option>
+          <option value="Letter">Letter (8.5 × 11in)</option>
+          <option value="A3">A3 (297 × 420mm)</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <label>Orientation</label>
+        <select id="orientation" style="flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+          <option value="auto" selected>Auto (per image)</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <label>Margin</label>
+        <input type="range" min="0" max="50" value="10" id="marginSlider" oninput="document.getElementById('marginVal').textContent = this.value + 'pt'">
+        <span class="setting-val" id="marginVal">10pt</span>
+      </div>
+      <div class="setting-row">
+        <label>Output name</label>
+        <input type="text" id="outputName" value="images.pdf" style="flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;">
+      </div>
+    </div>
+
+    <button class="process-btn" id="convertBtn" onclick="convertToPDF()" disabled>
+      🖼 Convert to PDF
+    </button>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-label">
+        <span id="progressMsg">Converting images…</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <div class="result-box" id="resultBox">
+      <h3>✓ PDF Created!</h3>
+      <div class="result-stats">
+        <div class="result-stat"><span>Images</span><strong id="statImages">—</strong></div>
+        <div class="result-stat"><span>Pages</span><strong id="statPages">—</strong></div>
+        <div class="result-stat"><span>PDF size</span><strong id="statSize">—</strong></div>
+      </div>
+      <button class="download-btn" id="downloadBtn">⬇ Download PDF</button>
+    </div>
+
+    <div class="tool-steps" style="margin-top:48px">
+      <div class="tool-step">
+        <div class="tool-step-num">1</div>
+        <h4>Select images</h4>
+        <p>Upload JPG, PNG or WEBP files</p>
+      </div>
+      <div class="tool-step">
+        <div class="tool-step-num">2</div>
+        <h4>Set options</h4>
+        <p>Choose page size and orientation</p>
+      </div>
+      <div class="tool-step">
+        <div class="tool-step-num">3</div>
+        <h4>Download PDF</h4>
+        <p>Get your PDF with all images</p>
+      </div>
+    </div>
+
+    <div class="ad-slot" style="height:90px;margin:32px 0"><span>Advertisement</span></div>
+
+    <div class="tool-faq" itemscope itemtype="https://schema.org/FAQPage">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Can I convert multiple images into one PDF? <span>+</span></button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes — upload as many images as you like. Each image becomes one page in the PDF. You can drag the preview thumbnails to reorder pages before converting.</p>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">What image formats are supported? <span>+</span></button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">We support JPG/JPEG, PNG, WEBP, and GIF (first frame). For best quality, use PNG or high-quality JPG files.</p>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Will the image quality be reduced in the PDF? <span>+</span></button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">No. Images are embedded at full resolution in the PDF. The file conversion is done entirely in your browser with no quality loss.</p>
+          </div>
+        </div>
+        <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="faq-q" onclick="toggleFAQ(this)" itemprop="name">Can I convert PNG with transparent background to PDF? <span>+</span></button>
+          <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes. PNG files with transparency are supported. The transparent areas will appear white in the resulting PDF.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="tool-sidebar">
+    <div class="ad-slot" style="height:250px;margin-bottom:24px"><span>Advertisement</span></div>
+    <div class="related-tools">
+      <h3>Related Tools</h3>
+      <div class="related-list">
+        <a href="merge.html" class="related-item">⊕ Merge PDF</a>
+        <a href="compress.html" class="related-item">⇩ Compress PDF</a>
+        <a href="pdf-to-jpg.html" class="related-item">🖼 PDF to JPG</a>
+        <a href="compress-image.html" class="related-item">🗜 Compress Image</a>
+        <a href="resize-image.html" class="related-item">⤡ Resize Image</a>
+        <a href="convert-image.html" class="related-item">⇄ Convert Image</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-link"><span class="logo-icon">⬡</span><span class="logo-text">File<strong>Forge</strong></span></a>
+      <p>Free online PDF & image tools.<br>No signup. 100% free forever.</p>
+    </div>
+    <div class="footer-col"><h4>PDF Tools</h4><a href="merge.html">Merge PDF</a><a href="split.html">Split PDF</a><a href="compress.html">Compress PDF</a></div>
+    <div class="footer-col"><h4>Image Tools</h4><a href="jpg-to-pdf.html">JPG to PDF</a><a href="compress-image.html">Compress Image</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><div class="container"><span>© 2026 Talha Ramzan — FileForge.</span></div></div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// Page size definitions in points (1pt = 1/72 inch)
+var PAGE_SIZES = {
+  'A4': [595.28, 841.89],
+  'Letter': [612, 792],
+  'A3': [841.89, 1190.55],
+};
+
+// FIXED: zone is single source of truth; renderPreviews() always calls zone.getFiles()
+var zone = initUploadZone('uploadZone', 'fileInput', null, {
+  accept: 'image/jpeg,image/png,image/webp,image/gif',
+  onChange: function(files) {
+    document.getElementById('settingsPanel').style.display = files.length ? 'block' : 'none';
+    var btn = document.getElementById('convertBtn');
+    btn.disabled = !files.length;
+    btn.textContent = files.length
+      ? '🖼 Convert ' + files.length + ' Image' + (files.length > 1 ? 's' : '') + ' to PDF'
+      : '🖼 Convert to PDF';
+    renderPreviews();
+  }
+});
+
+function renderPreviews() {
+  var grid = document.getElementById('previewGrid');
+  var gridWrap = document.getElementById('imagePreviewGrid');
+  var countEl = document.getElementById('imageCount');
+  var files = zone ? zone.getFiles() : [];
+  grid.innerHTML = '';
+
+  if (!files.length) { gridWrap.style.display = 'none'; return; }
+  gridWrap.style.display = 'block';
+  countEl.textContent = files.length + ' image' + (files.length > 1 ? 's' : '');
+
+  files.forEach(function(f, i) {
+    var url = URL.createObjectURL(f);
+    var div = document.createElement('div');
+    div.style.cssText = 'position:relative;border:1px solid var(--border);border-radius:8px;overflow:hidden;aspect-ratio:1;background:var(--bg2)';
+
+    var img = document.createElement('img');
+    img.src = url;
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover';
+    img.loading = 'lazy';
+    // Revoke object URL after image loads to free memory
+    img.onload = function() { URL.revokeObjectURL(url); };
+
+    var label = document.createElement('div');
+    label.style.cssText = 'position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);color:#fff;font-size:11px;padding:4px 6px;display:flex;justify-content:space-between';
+    label.innerHTML = '<span>Pg ' + (i+1) + '</span><span>' + formatBytes(f.size) + '</span>';
+
+    div.appendChild(img);
+    div.appendChild(label);
+    grid.appendChild(div);
+  });
+}
+
+async function loadImageAsBytes(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+async function convertToPDF() {
+  var imageFiles = zone ? zone.getFiles() : [];
+  if (!imageFiles.length) return;
+
+  const btn = document.getElementById('convertBtn');
+  btn.disabled = true; btn.textContent = 'Converting…';
+  showProgress('progressWrap');
+
+  const pageSizeKey = document.getElementById('pageSize').value;
+  const orientation = document.getElementById('orientation').value;
+  const margin = parseInt(document.getElementById('marginSlider').value);
+  const outputName = document.getElementById('outputName').value || 'images.pdf';
+
+  try {
+    var pdfDoc = await PDFLib.PDFDocument.create();
+
+    for (let i = 0; i < imageFiles.length; i++) {
+      const file = imageFiles[i];
+      const pct = Math.round((i / imageFiles.length) * 90);
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressPct').textContent = pct + '%';
+      document.getElementById('progressMsg').textContent = `Processing image ${i+1}/${imageFiles.length}…`;
+
+      const imgBytes = await loadImageAsBytes(file);
+      let pdfImage;
+
+      try {
+        if (file.type === 'image/png') {
+          pdfImage = await pdfDoc.embedPng(imgBytes);
+        } else {
+          // Convert to JPEG via canvas for non-jpg formats
+          const blob = await toJpegBlob(file);
+          const jpegBytes = await blob.arrayBuffer();
+          pdfImage = await pdfDoc.embedJpg(jpegBytes);
+        }
+      } catch {
+        const blob = await toJpegBlob(file);
+        const jpegBytes = await blob.arrayBuffer();
+        pdfImage = await pdfDoc.embedJpg(jpegBytes);
+      }
+
+      const imgDims = pdfImage.scale(1);
+      let pageW, pageH;
+
+      if (pageSizeKey === 'fit') {
+        pageW = imgDims.width + margin * 2;
+        pageH = imgDims.height + margin * 2;
+      } else {
+        [pageW, pageH] = PAGE_SIZES[pageSizeKey] || PAGE_SIZES['A4'];
+        const isLandscapeImg = imgDims.width > imgDims.height;
+        const forceOrient = orientation === 'auto' ? (isLandscapeImg ? 'landscape' : 'portrait') : orientation;
+        if (forceOrient === 'landscape' && pageW < pageH) [pageW, pageH] = [pageH, pageW];
+        else if (forceOrient === 'portrait' && pageW > pageH) [pageW, pageH] = [pageH, pageW];
+      }
+
+      const page = pdfDoc.addPage([pageW, pageH]);
+
+      // Scale image to fit with margin
+      const maxW = pageW - margin * 2;
+      const maxH = pageH - margin * 2;
+      const scale = Math.min(maxW / imgDims.width, maxH / imgDims.height, 1);
+      const drawW = imgDims.width * scale;
+      const drawH = imgDims.height * scale;
+      const x = (pageW - drawW) / 2;
+      const y = (pageH - drawH) / 2;
+
+      page.drawImage(pdfImage, { x, y, width: drawW, height: drawH });
+    }
+
+    document.getElementById('progressFill').style.width = '95%';
+    document.getElementById('progressMsg').textContent = 'Generating PDF…';
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressPct').textContent = '100%';
+    await new Promise(r => setTimeout(r, 300));
+
+    document.getElementById('statImages').textContent = imageFiles.length;
+    document.getElementById('statPages').textContent = imageFiles.length;
+    document.getElementById('statSize').textContent = formatBytes(blob.size);
+
+    document.getElementById('downloadBtn').onclick = () => {
+      const a = document.createElement('a');
+      a.href = url; a.download = outputName; a.click();
+    };
+
+    hideProgress('progressWrap');
+    showResult('resultBox');
+
+  } catch (err) {
+    hideProgress('progressWrap');
+    alert('Conversion failed: ' + err.message);
+  }
+
+  btn.disabled = false; btn.textContent = '🖼 Convert Again';
+}
+
+function toJpegBlob(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = img.naturalWidth; c.height = img.naturalHeight;
+      c.getContext('2d').drawImage(img, 0, 0);
+      c.toBlob(b => { URL.revokeObjectURL(url); resolve(b); }, 'image/jpeg', 0.92);
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+</script>
+</body>
+</html>
