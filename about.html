@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About FileForge — Free Online PDF & Image Tools</title>
+<meta name="description" content="FileForge offers 50+ free online PDF and image tools. No signup, no watermark. Built for everyone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo-link">
+      <span class="logo-icon">⬡</span><span class="logo-text">File<strong>Forge</strong></span>
+    </a>
+    <nav class="main-nav">
+      <div class="nav-dropdown">
+        <button class="nav-btn">PDF Tools ▾</button>
+        <div class="dropdown-menu">
+          <a href="merge.html">Merge PDF</a><a href="split.html">Split PDF</a><a href="compress.html">Compress PDF</a>
+        </div>
+      </div>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </nav>
+    <div class="header-actions">
+      <button class="dark-btn" onclick="toggleDark()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+    <button class="hamburger" onclick="toggleNav()">☰</button>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>About</span></div>
+    <h1>About FileForge</h1>
+    <p>The free, fast, private file tool suite built for everyone.</p>
+  </div>
+</section>
+
+<div class="container" style="padding:60px 0;max-width:800px">
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px">
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;text-align:center">
+      <div style="font-size:40px;font-weight:800;font-family:'Syne',sans-serif;color:var(--accent)">50+</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:4px">Free tools</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;text-align:center">
+      <div style="font-size:40px;font-weight:800;font-family:'Syne',sans-serif;color:var(--accent)">10M+</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:4px">Files processed</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;text-align:center">
+      <div style="font-size:40px;font-weight:800;font-family:'Syne',sans-serif;color:var(--accent)">0</div>
+      <div style="font-size:14px;color:var(--text2);margin-top:4px">Signups required</div>
+    </div>
+  </div>
+
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px">Our mission</h2>
+  <p style="color:var(--text2);margin-bottom:20px;line-height:1.8">FileForge was created with one goal: to give everyone access to professional-grade file tools without the friction of subscriptions, watermarks, or account creation. Every PDF tool, image compressor, and format converter we build is free — period.</p>
+
+  <p style="color:var(--text2);margin-bottom:40px;line-height:1.8">Most of our tools work entirely in your browser, meaning your files never leave your device. For tools that require server processing, all files are encrypted in transit and permanently deleted from our servers within 1 hour.</p>
+
+  <h2 style="font-size:24px;font-weight:700;margin-bottom:16px">Privacy first</h2>
+  <p style="color:var(--text2);margin-bottom:20px;line-height:1.8">We take your privacy seriously. FileForge does not sell your data, does not use your files for training, and does not share information with third parties. All file processing is protected by 256-bit SSL encryption.</p>
+
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:28px;margin-top:40px">
+    <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">Built by Talha Ramzan</h3>
+    <p style="font-size:14px;color:var(--text2)">FileForge is an independent project. If you have questions, feedback, or feature requests, we'd love to hear from you.</p>
+    <a href="contact.html" style="display:inline-block;margin-top:12px;background:var(--accent);color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600">Get in touch →</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo-link"><span class="logo-icon">⬡</span><span class="logo-text">File<strong>Forge</strong></span></a>
+      <p>Free online PDF & image tools.<br>No signup. 100% free forever.</p>
+    </div>
+    <div class="footer-col"><h4>PDF Tools</h4><a href="merge.html">Merge PDF</a><a href="split.html">Split PDF</a><a href="compress.html">Compress PDF</a></div>
+    <div class="footer-col"><h4>Image Tools</h4><a href="jpg-to-pdf.html">JPG to PDF</a><a href="compress-image.html">Compress Image</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><div class="container"><span>© 2026 Talha Ramzan — FileForge.</span></div></div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
